@@ -1,0 +1,47 @@
+<!-- tracker/templates/tracker/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance Tracker</title>
+    <!-- Bootstrap CSS (optional, for styling) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <p>Mange at one place</p>
+        <h1 class="mb-3">Maximise Your Financial Potential</h1>
+        <p>Welcom to FinTrack, where financial management meets simplicity and efficiency</p>
+        <button>Sign up</button>
+    </div>
+
+    <div class="container mt-5">
+        <p>Empower Your Finance With Us</p>
+
+        <div class="p-4 mb-4 border rounded shadow-sm">
+            <h4>Real-time Expense Tracking</h4>
+            <p>Track every transaction as it happens. Our smart categorization helps you see exactly where your money goes.</p>
+            <p>You can also set spending alerts and create budgets for different categories like groceries, rent, or entertainment.</p>
+          </div>
+        
+          <!-- Feature 2 -->
+          <div class="p-4 mb-4 border rounded shadow-sm">
+            <h4>Personalized Financial Insights</h4>
+            <p>We analyze your spending behavior and provide actionable tips to help you save more.</p>
+            <p>Visual charts and monthly summaries make it easy to understand your financial trends.</p>
+          </div>
+        
+          <!-- Feature 3 -->
+          <div class="p-4 mb-4 border rounded shadow-sm">
+            <h4>Secure Account Management</h4>
+            <p>FinTrack uses end-to-end encryption to protect your data. Your information stays private and secure.</p>
+            <p>Multi-factor authentication and activity monitoring are built in by default.</p>
+          </div>
+    </div>
+
+    {% endblock %}
+</body>
+</html>

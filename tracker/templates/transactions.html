@@ -1,0 +1,124 @@
+{% extends "sidenav.html" %}
+
+{% block content %}
+<h3>Transactions</h3>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+          <div class="card text-dark bg-light shadow-sm mb-3" style="width: 200px;">
+            <div class="card-body">
+              <h5 class="card-title">Food and drinks</h5>
+              <p class="card-text">$500</p>
+            </div>
+          </div>
+        </div>
+       
+        <div class="col-md-3">
+            <div class="card text-dark bg-light shadow-sm mb-3" style="width: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">Transport</h5>
+                <p class="card-text">$700</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card text-dark bg-light shadow-sm mb-3" style="width: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">Rent</h5>
+                <p class="card-text">$2,200</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card text-dark bg-light shadow-sm mb-3" style="width: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">Purchases</h5>
+                <p class="card-text">$900</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card text-dark bg-light shadow-sm mb-3" style="width: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">Life and entertainment</h5>
+                <p class="card-text">$800</p>
+              </div>
+            </div>
+          </div>
+
+         
+      </div>
+      
+  </div>
+
+  <h3>Add Transactions</h3>
+
+
+<form method="POST">
+  {% csrf_token %}
+
+
+  <input type="text" name="title" placeholder="Title" required><br>
+
+  
+  <select name="type" placeholder="Category">
+    <option value="income">Income</option>
+    <option value="food and drinks">Food and drinks</option>
+    <option value="transport">Transport</option>
+    <option value="rent">Rent</option>
+    <option value="purchases">Purchases</option>
+    <option value="life and entertainment">Life and entertainment</option>
+  </select><br>
+  
+  <input type="number" name="amount" step="0.01" placeholder="Amount" required><br>
+  
+  <button type="submit">Add</button>
+</form>
+
+<h3 class="mt-5">Recent Transactions</h3>
+
+{% if transactions %}
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for txn in transactions %}
+        <tr>
+          <td>{{ txn.title }}</td>
+          <td>{{ txn.type }}</td>
+          <td>${{ txn.amount }}</td>
+          <td>{{ txn.date }}</td>
+          <td>
+            <a href="{% url 'edit_transaction' txn.id %}" class="btn btn-sm btn-primary">Edit</a>
+          </td>
+          <td>
+            <form method="post" action="{% url 'delete_transaction' txn.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+              
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+
+
+  </table>
+{% else %}
+  <p class="text-muted">No transactions yet.</p>
+{% endif %}
+
+
+{% endblock %}
