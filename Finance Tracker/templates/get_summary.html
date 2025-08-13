@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Summary Of Expenses{% endblock %}
+
+{% block content %}
+    <h1>Summary of Expenses</h1>
+    <form method="POST" class="p-4 border rounded bg-light shadow-sm">
+       
+        <div class="mb-3">
+              <label for="month">Month:</label>
+             <input type="number" name="month" min="1" max="12" required>
+        
+
+        </div>
+
+        <div class="mb-3">
+            <label for="year">Year:</label>
+            <input type="number" name="year" required>
+        </div>
+
+         <button type="submit" class="btn btn-primary">Get Summary</button>
+    </form>
+
+   {% if result %}
+    <br/>
+    <div class="card text-left p-4 border rounded bg-light shadow-sm" style="width: 25rem;">
+        <h2>Summary for {{ month }}/{{ year }}</h2>
+        <h6>Total Spent: ${{ result.total_spent }}</h6>
+        <h6>Total Income: ${{ result.total_income }}</h6>
+        <h6>Savings: ${{ result.savings }}</h6>
+
+        <br/>
+        <h3>By Category:</h3>
+        <ul>
+        {% for cat, amt in result.total_by_category.items() %}
+            <li>{{ cat }}: ${{ amt }}</li>
+        {% endfor %}
+        </ul>
+
+       {% if result.budget_by_category %}
+  <br/>
+  <h3>Budgets by Category for {{ month }}/{{ year }}:</h3>
+  <ul>
+    {% for cat, budget in result.budget_by_category.items() %}
+      <li>
+        {{ cat }}: ${{ budget }}
+        {% if result.total_by_category[cat] is defined %}
+          {% if result.total_by_category[cat] > budget %}
+            <span style="color:red;">(Over budget)</span>
+          {% else %}
+            <span style="color:green;">(Within budget)</span>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No budgets found for this month.</p>
+{% endif %}
+
+    </div>
+{% endif %}
+
+    <br>
+   <a href="{{ url_for('index') }}" class="btn btn-info">Back to Home</a>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+    {% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+    <h1>Welcome to the Expense Tracker</h1>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Add New Expense</h5>
+                    <p class="card-text">Track your expenses! Add a new expense under your desired category.</p>
+                    <a href="{{ url_for('add_expense') }}" class="btn btn-primary">Let's Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Add Income</h5>
+                    <p class="card-text">Add any transactions that come into your account.</p>
+                    <a href="{{ url_for('add_income') }}" class="btn btn-primary">Let's Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Add Budget</h5>
+                    <p class="card-text">Add a budget to remind yourself of your expenditure limit.</p>
+                    <a href="{{ url_for('add_budget') }}" class="btn btn-primary">Let's Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Get your summary</h5>
+                    <p class="card-text">Get a summary of your expenses to better understand where your money goes.</p>
+                    <a href="{{ url_for('add_summary') }}" class="btn btn-primary">Let's Go</a>
+                </div>
+            </div>
+        </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="card border-dark h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">View your expense</h5>
+                    <p class="card-text">View all your expenses for the month in a list</p>
+                    <a href="{{ url_for('view_expense') }}" class="btn btn-primary">Let's Go</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+ 

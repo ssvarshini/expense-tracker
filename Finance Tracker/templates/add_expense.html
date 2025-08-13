@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Add Expense{% endblock %}
+
+{% block content %}
+    <h1>Add New Expense</h1>
+    <form method="POST" class="p-4 border rounded bg-light shadow-sm">
+        <div class="mb3">
+            <label class="form-label">Name:</label>
+            <input type="text" class="form-control" name="name" required><br><br>
+        </div>
+        
+
+         <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" name="amount" step="0.01" required>
+        </div>
+
+        <label>Category:</label>
+        <select name="category" class="form-select" aria-label="Default select example">
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select><br><br>
+
+       <div class="mb-3">
+            <label for="date" class="form-label">Date (YYYY-MM-DD)</label>
+            <input type="date" class="form-control" name="date" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}" class="btn btn-info">Back to Home</a>
+{% endblock %}
